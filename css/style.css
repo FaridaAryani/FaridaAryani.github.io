@@ -216,7 +216,7 @@ p {
       transform: translateX(0);
   }
 }
-.logo img{
+img{
   width: 40px; /* Atur lebar sesuai kebutuhan */
   margin-right: 10px; /* Atur margin sesuai kebutuhan */
 }
