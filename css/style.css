@@ -3,13 +3,21 @@
   padding: 0;
 }
 body {
+  width: 100%;
+  height: 100vh;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
+  /* Set background image */
+  background-image: url('background.jpg');
+  /* Specify background size and other properties */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 /*navbar*/
 nav {
   display: flex;
-  background-color: coral;
+  background-color: rgb(68, 71, 250);
   justify-content: space-around;
   /* padding: 20px 0; atas bawah 20  kiri kanan 0 */
   /* atur padding dengan flex */
@@ -25,7 +33,7 @@ nav ul {
   transition: all 0.4s;
 }
 nav .logo {
-  font-family: "Srisakdi", cursive;
+  font-family: "Firefox", cursive;
   letter-spacing: 3px; /*space antar char*/
 }
 
@@ -90,9 +98,9 @@ nav ul li a:hover {
 
   .image {
    
-    width: 100%;
+    width: 50%;
     height: auto;  
-    max-width: 140px;
+    max-width: 100px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -106,7 +114,7 @@ nav ul li a:hover {
     padding: 8px;
     border-radius: 5px;
     margin: 0 auto;
-
+    background: url('background.jpg');
 }
 main {
     display: flex;
@@ -128,6 +136,10 @@ flex-grow: 1;
 footer {
     text-align: center;
 }
+h1{
+  text-align: justify;
+  padding-top: 1%;
+}
 h2 {
   
     text-align: center;
@@ -136,6 +148,10 @@ h2 {
     word-wrap: break-word;
 
 }
+h4 {
+  text-align: justify;
+  padding-top: 1%;
+}
 h5 {
   text-align: center;
   color: red;
@@ -143,7 +159,7 @@ h5 {
  
 }
 p {
-    text-align: justify;
+    text-align: center;
     text-justify: inter-word;
 }
 @media screen and (max-width: 768px) {
@@ -179,4 +195,29 @@ p {
         /* transform: translateX(0); */
     }
   }
+  .video-container {
+    /* max-width: 100px; */
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hiddenc;
+    max-width: 100%;
+    max-height: 100%;
+}
+.slide-in {
+  transform: translateX(-100%);
+  animation: slideIn 1s ease-in-out forwards;
+}
 
+@keyframes slideIn {
+  from {
+      transform: translateX(-100%);
+  }
+  to {
+      transform: translateX(0);
+  }
+}
+.logo img {
+  width: 40px; /* Atur lebar sesuai kebutuhan */
+  height: auto; /* Biarkan tinggi mengikuti rasio aspek asli */
+  margin-right: 10px; /* Atur margin sesuai kebutuhan */
+}
