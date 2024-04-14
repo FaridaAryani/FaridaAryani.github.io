@@ -1,32 +1,28 @@
-/* style.css */
+/* Reset CSS */
 * {
-  margin: 0;
-  padding: 0;
+  margin: 5;
+  padding: 5;
   box-sizing: border-box;
 }
-/* body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    text-align: center;
-} */
+
+/* Body Styling */
 body {
-  width: 100%;
+  width: 98%;
   height: 100vh;
-  font-family: "Roboto", sans-serif;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   overflow-x: hidden;
-  background-image: url('background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* Navbar Styling */
 nav {
   display: flex;
-  background-color: rgb(68, 71, 250);
-  justify-content: space-around;
-  height: 45px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(139, 69, 19);
+  justify-content: center;
+  height: 40px;
   align-items: center;
   color: whitesmoke;
 }
@@ -34,20 +30,14 @@ nav {
 nav ul {
   display: flex;
   list-style: none;
-  width: 20%;
+  width: 50%;
   justify-content: space-between;
-  transition: all 0.4s;
-}
-
-nav .logo {
-  font-family: "Firefox", cursive;
-  letter-spacing: 3px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: white;
-  font-size: 0.9rem;
+  font-size:medium;
 }
 
 nav ul li a:hover {
@@ -55,100 +45,116 @@ nav ul li a:hover {
 }
 
 /* Hamburger Menu Styling */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  height: 17px;
-  justify-content: space-between;
+.hamburger-menu {
+  width: 30px; /* Lebar ikon hamburger */
+  height: 20px; /* Tinggi ikon hamburger */
   position: relative;
+  display: inline-block;
+  cursor: pointer; /* Mengubah kursor menjadi tanda panah saat dihover */ 
 }
 
-.menu-toggle input {
+/* Garis-garis pada hamburger */
+.hamburger-menu .line {
+  width: 100%;
+  height: 3px; /* Tinggi garis */
+  background-color: #333; /* Warna garis */
   position: absolute;
-  top: -5px;
-  left: -3px;
-  width: 21px;
-  height: 21px;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
+  left: 0;
+  transition: transform 0.3s ease; /* Efek transisi saat dihover */
 }
 
-.menu-toggle span {
-  display: block;
-  width: 21px;
-  height: 2px;
-  background-color: whitesmoke;
-  border-radius: 3px;
-  transition: all 0.7s;
+/* Mengatur posisi garis-garis */
+.hamburger-menu .line.middle {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.menu-toggle span:nth-child(2),
-.menu-toggle span:nth-child(4) {
-  transform-origin: left center;
+.hamburger-menu .line.top {
+  top: 0;
 }
 
-.menu-toggle input:checked ~ span:nth-child(2) {
-  transform: rotate(45deg);
+.hamburger-menu .line.bottom {
+  bottom: 0;
 }
 
-.menu-toggle input:checked ~ span:nth-child(4) {
-  transform: rotate(-45deg);
+/* Efek hover untuk garis-garis */
+.hamburger-menu:hover .line {
+  background-color: #555; /* Warna garis saat dihover */
 }
 
-.menu-toggle input:checked ~ span:nth-child(3) {
-  width: 0%;
-  opacity: 0;
-  transition: 0.1s;
+/* Efek untuk animasi hamburger menu ketika di klik */
+.hamburger-menu.active .line.top {
+  transform: translateY(50%) rotate(-45deg);
 }
 
-.container {
-    display: flex;
-    height: flex;
-    text-align:justify;
-    
+.hamburger-menu.active .line.middle {
+  opacity: 0; /* Menghilangkan garis tengah saat hamburger aktif */
 }
 
-.box {
-    flex: 1;
-    padding: 20px;
+.hamburger-menu.active .line.bottom {
+  transform: translateY(-50%) rotate(45deg);
 }
 
-.box.flextwo {
-    flex: 2;
+/* Container Styling */
+/* .container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(205, 133, 63);
+  padding: 8px;
+  border-radius: 5px;
+  margin: 0;
+  justify-content:center;
+} */
+
+/* CSS untuk gaya tabel */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-img {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 50%;
-    width: 20vw;
-    height: flex;
+table, th, td {
+  border: 1px solid #ddd;
 }
 
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* CSS untuk mengatur lebar kolom */
+/* Misalnya, Anda ingin lebar kolom waktu_pengambilan_data lebih kecil */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 5%;
+}
+
+/* Misalnya, Anda ingin lebar kolom judul lebih besar */
+th:nth-child(2),
+td:nth-child(2) {
+  width: 50%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 15%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 15%;
+}
+
+/* Footer Styling */
 footer {
   text-align: center;
-}
-.slide-in {
-  transform: translateX(-100%);
-  animation: slideIn 1s ease-in-out forwards;
-}
-
-@keyframes slideIn {
-  from {
-      transform: translateX(-100%);
-  }
-  to {
-      transform: translateX(0);
-  }
-}
-.logo img {
-  width: 40px; /* Atur lebar sesuai kebutuhan */
-  height: auto; /* Biarkan tinggi mengikuti rasio aspek asli */
-  margin-right: 10px; /* Atur margin sesuai kebutuhan */
-}
-p{
-  text-align: justify;
-  text-justify: inter-word;
 }
