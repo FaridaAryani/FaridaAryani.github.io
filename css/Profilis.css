@@ -154,6 +154,10 @@ td:nth-child(4) {
   width: 15%;
 }
 
+h1{
+  text-align: center;
+}
+
 /* Footer Styling */
 footer {
   text-align: center;

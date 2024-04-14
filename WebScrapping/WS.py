@@ -4,8 +4,10 @@ from datetime import datetime
 import json
 
 # Mengambil waktu sistem saat ini
-waktu_pengambilan_data = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+now = datetime.now()
+waktu_pengambilan_data = now.strftime("%d %B %Y %H:%M:%S")
 print("Waktu Pengambilan Data:", waktu_pengambilan_data)
+
 url = 'https://republika.co.id/'
 req = requests.get(url)
 soup = BeautifulSoup(req.text, 'html.parser')
@@ -24,6 +26,13 @@ for index, i in enumerate(items[18:], start=1):  # Mulai nomor urutan dari 1
         waktu_publish = waktu.text
         # Menghapus kategori dari waktu publish
         waktu_publish_cleaned = waktu_publish.replace(kategori.text + ' - ', '')
+        # Hapus bagian hari dari waktu publish
+        parts = waktu_publish.split(', ')
+        if len(parts) > 1:
+            waktu_publish_cleaned = ', '.join(parts[1:])
+        else:
+            waktu_publish_cleaned = waktu_publish
+
         print("Nomor:", index)
         print("Judul:", title_text)
         print("Kategori:", kategori_text)
