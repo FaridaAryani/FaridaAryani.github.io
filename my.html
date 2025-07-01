@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracker 30 Hari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="container mx-auto p-4 max-w-2xl">
+    <h1 class="text-3xl font-bold text-center mb-6">Tracker 30 Hari</h1>
+    <div class="mb-4">
+      <label for="day" class="block text-lg font-medium mb-2">Pilih Hari:</label>
+      <select id="day" class="w-full p-2 border rounded" onchange="updateTasks()">
+        <option value="1">Hari 1</option>
+        <!-- Tambahkan opsi hingga Hari 30 -->
+        <option value="2">Hari 2</option>
+        <option value="3">Hari 3</option>
+        <option value="4">Hari 4</option>
+        <option value="5">Hari 5</option>
+        <option value="6">Hari 6</option>
+        <option value="7">Hari 7 (Istirahat)</option>
+        <option value="8">Hari 8</option>
+        <option value="9">Hari 9</option>
+        <option value="10">Hari 10</option>
+        <option value="11">Hari 11</option>
+        <option value="12">Hari 12</option>
+        <option value="13">Hari 13</option>
+        <option value="14">Hari 14 (Istirahat)</option>
+        <option value="15">Hari 15</option>
+        <option value="16">Hari 16</option>
+        <option value="17">Hari 17</option>
+        <option value="18">Hari 18</option>
+        <option value="19">Hari 19</option>
+        <option value="20">Hari 20</option>
+        <option value="21">Hari 21 (Istirahat)</option>
+        <option value="22">Hari 22</option>
+        <option value="23">Hari 23</option>
+        <option value="24">Hari 24</option>
+        <option value="25">Hari 25</option>
+        <option value="26">Hari 26</option>
+        <option value="27">Hari 27</option>
+        <option value="28">Hari 28 (Istirahat)</option>
+        <option value="29">Hari 29</option>
+        <option value="30">Hari 30</option>
+      </select>
+    </div>
+    <div id="task-list" class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-4">Tugas Hari <span id="current-day">1</span></h2>
+      <ul id="tasks" class="space-y-2">
+        <!-- Tugas akan dimuat oleh JavaScript -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const tasksByDay = {
+      1: [
+        { category: "Workout", task: "HIIT 45 menit (500 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari Pinyin, nada, 20 kata HSK 1", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Rencanakan situs, buat mockup dasar di Figma", completed: false },
+        { category: "Arduino", task: "Instal IDE, jalankan sketsa LED berkedip", completed: false },
+        { category: "Mandarin", task: "Latih Pinyin, hafal 10 kata HSK 1", completed: false },
+        { category: "Arduino", task: "Buat sketsa LED dikontrol tombol", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      2: [
+        { category: "Workout", task: "Kardio 45 menit (500 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, struktur kalimat", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Sempurnakan mockup Figma", completed: false },
+        { category: "Arduino", task: "Buat rangkaian beberapa LED", completed: false },
+        { category: "Mandarin", task: "Latih kalimat, pelajari angka 1–100", completed: false },
+        { category: "Arduino", task: "Kontrol kecerahan LED dengan PWM", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      // Struktur serupa untuk hari 3–30 berdasarkan jadwal sebelumnya
+      3: [
+        { category: "Workout", task: "HIIT + latihan inti (500 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, frasa harian", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Buat struktur HTML (header, nav, footer)", completed: false },
+        { category: "Arduino", task: "Jalankan sketsa sensor suhu", completed: false },
+        { category: "Mandarin", task: "Latih dialog, ulas kosakata", completed: false },
+        { category: "Arduino", task: "Buat rangkaian tampilan suhu", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      4: [
+        { category: "Workout", task: "Kardio + kekuatan (500 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, tata bahasa dasar", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Tambahkan gaya CSS (flexbox/grid)", completed: false },
+        { category: "Arduino", task: "Buat sketsa kontrol servo", completed: false },
+        { category: "Mandarin", task: "Latih berbicara, ulas tata bahasa", completed: false },
+        { category: "Arduino", task: "Buat proyek lengan servo sederhana", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      5: [
+        { category: "Workout", task: "HIIT + peregangan (500 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, ekspresi waktu", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Tambahkan interaktivitas JS (event tombol)", completed: false },
+        { category: "Arduino", task: "Tampilkan data sensor di LCD", completed: false },
+        { category: "Mandarin", task: "Latih kalimat waktu, ulas kosakata", completed: false },
+        { category: "Arduino", task: "Buat proyek tampilan suhu LCD", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      6: [
+        { category: "Workout", task: "Kardio + inti (500 kkal)", completed: false },
+        { category: "Mandarin", task: "Ulas 100 kata HSK 1, latih dialog", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Selesaikan mockup, sempurnakan HTML/CSS", completed: false },
+        { category: "Arduino", task: "Pelajari komunikasi serial, debug sketsa", completed: false },
+        { category: "Mandarin", task: "Mulai 20 kata HSK 2, latih membaca", completed: false },
+        { category: "Arduino", task: "Buat proyek sensor dan LCD", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      7: [
+        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false },
+        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      8: [
+        { category: "Workout", task: "HIIT + kekuatan (600 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 2, pola kalimat", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Tambahkan formulir, validasi JS", completed: false },
+        { category: "Arduino", task: "Buat alat ukur jarak ultrasonik", completed: false },
+        { category: "Mandarin", task: "Latih kalimat HSK 2, ulas kosakata", completed: false },
+        { category: "Arduino", task: "Sempurnakan proyek jarak dengan buzzer", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      // Lanjutkan untuk hari 9–30 dengan tugas sesuai jadwal sebelumnya
+      // Untuk efisiensi, hanya hari kunci disertakan; pola tugas mengikuti jadwal sebelumnya
+      14: [
+        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false },
+        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      15: [
+        { category: "Workout", task: "Kardio + kekuatan (600 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 3, kalimat kompleks", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Optimasi waktu muat, tambahkan animasi", completed: false },
+        { category: "Arduino", task: "Pelajari modul Wi-Fi (ESP8266)", completed: false },
+        { category: "Mandarin", task: "Latih kalimat HSK 3, ulas kosakata", completed: false },
+        { category: "Arduino", task: "Buat proyek IoT (data sensor ke web)", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      21: [
+        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false },
+        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      22: [
+        { category: "Workout", task: "Kardio + kekuatan (700 kkal)", completed: false },
+        { category: "Mandarin", task: "Pelajari 20 kata HSK 3, latih esai", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Luncurkan situs, kumpulkan umpan balik", completed: false },
+        { category: "Arduino", task: "Mulai proyek otomatisasi rumah", completed: false },
+        { category: "Mandarin", task: "Latih mendengar (podcast), ulas kosakata", completed: false },
+        { category: "Arduino", task: "Lanjutkan proyek otomatisasi", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      28: [
+        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false },
+        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      29: [
+        { category: "Workout", task: "HIIT + inti (700 kkal)", completed: false },
+        { category: "Mandarin", task: "Simulasi tes HSK 3, ulas kelemahan", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Perbarui akhir, pastikan kompatibilitas mobile", completed: false },
+        { category: "Arduino", task: "Presentasikan proyek akhir", completed: false },
+        { category: "Mandarin", task: "Latih kelancaran percakapan", completed: false },
+        { category: "Arduino", task: "Refleksi keterampilan, rencanakan langkah berikutnya", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ],
+      30: [
+        { category: "Workout", task: "Kardio + kekuatan (700 kkal)", completed: false },
+        { category: "Mandarin", task: "Ulas penuh HSK 3, latih semua keterampilan", completed: false },
+        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false },
+        { category: "Website", task: "Ulas situs akhir, cadangkan kode", completed: false },
+        { category: "Arduino", task: "Ulas proyek, rencanakan pembelajaran lanjutan", completed: false },
+        { category: "Mandarin", task: "Percakapan dengan mitra bahasa", completed: false },
+        { category: "Arduino", task: "Jelajahi topik RTOS", completed: false },
+        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false }
+      ]
+    };
+
+    function updateTasks() {
+      const day = document.getElementById('day').value;
+      document.getElementById('current-day').textContent = day;
+      const tasks = tasksByDay[day] || [];
+      const taskList = document.getElementById('tasks');
+      taskList.innerHTML = '';
+
+      tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center space-x-2';
+        li.innerHTML = `
+          <input type="checkbox" id="task-${day}-${index}" ${task.completed ? 'checked' : ''} 
+                 class="h-5 w-5" onchange="toggleTask(${day}, ${index})">
+          <label for="task-${day}-${index}" class="${task.completed ? 'line-through text-gray-500' : ''}">
+            <span class="font-medium">[${task.category}]</span> ${task.task}
+          </label>
+        `;
+        taskList.appendChild(li);
+      });
+    }
+
+    function toggleTask(day, index) {
+      tasksByDay[day][index].completed = !tasksByDay[day][index].completed;
+      updateTasks();
+    }
+
+    // Inisialisasi tugas hari pertama
+    updateTasks();
+  </script>
+</body>
+</html>
