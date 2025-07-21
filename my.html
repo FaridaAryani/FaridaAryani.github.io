@@ -40,36 +40,46 @@
       transform: rotate(-90deg);
       transform-origin: 50% 50%;
     }
+    @media (max-width: 640px) {
+      .task-link-input {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .task-link-input input {
+        width: 100%;
+        margin-bottom: 8px;
+      }
+    }
   </style>
 </head>
 <body class="bg-light font-sans text-dark">
   <div class="min-h-screen pb-10">
     <!-- Header -->
-    <header class="gradient-bg text-white py-6 shadow-lg">
+    <header class="gradient-bg text-white py-4 sm:py-6 shadow-lg">
       <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl font-bold mb-2">My Glow-Up Journey</h1>
-        <p class="text-xl opacity-90">30 Days to a Better Me</p>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">My Glow-Up Journey</h1>
+        <p class="text-sm sm:text-base md:text-xl opacity-90">30 Days to a Better Me</p>
       </div>
     </header>
 
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-4xl">
       <!-- Start Date Selector -->
-      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-        <h2 class="text-2xl font-semibold mb-4 text-center">Set Your Start Date</h2>
-        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-          <input type="date" id="start-date" class="p-3 rounded-lg border-2 border-secondary focus:border-primary focus:ring-2 focus:ring-primary text-lg font-medium">
-          <button onclick="setStartDate()" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition font-medium">Set Date</button>
+      <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-4 sm:mb-6">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-center">Set Your Start Date</h2>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <input type="date" id="start-date" class="w-full sm:w-auto p-2 sm:p-3 rounded-lg border-2 border-secondary focus:border-primary focus:ring-2 focus:ring-primary text-base sm:text-lg font-medium">
+          <button onclick="setStartDate()" class="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition font-medium">Set Date</button>
         </div>
-        <div id="date-range-display" class="mt-4 text-center text-lg font-medium hidden">
+        <div id="date-range-display" class="mt-3 sm:mt-4 text-center text-sm sm:text-base md:text-lg font-medium hidden">
           Your journey: <span id="start-date-display"></span> to <span id="end-date-display"></span>
         </div>
       </div>
 
       <!-- Day Selector -->
-      <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-center">Select Your Day</h2>
+      <div class="bg-white rounded-xl shadow-md p-4 sm:p-6 mb-6 sm:mb-8">
+        <h2 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-center">Select Your Day</h2>
         <div class="relative">
-          <select id="day" class="w-full p-4 pr-10 rounded-lg border-2 border-secondary focus:border-primary focus:ring-2 focus:ring-primary appearance-none text-lg font-medium" onchange="updateTasks()">
+          <select id="day" class="w-full p-3 sm:p-4 pr-10 rounded-lg border-2 border-secondary focus:border-primary focus:ring-2 focus:ring-primary appearance-none text-base sm:text-lg font-medium" onchange="updateTasks()">
             <option value="1">Day 1 - Let's Begin!</option>
             <option value="2">Day 2 - Building Momentum</option>
             <option value="3">Day 3 - Finding Rhythm</option>
@@ -102,19 +112,19 @@
             <option value="30">Day 30 - Final Day!</option>
           </select>
           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <svg class="fill-current h-4 w-4 sm:h-6 sm:w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
           </div>
         </div>
-        <div id="current-date-display" class="mt-2 text-center text-gray-600 font-medium"></div>
+        <div id="current-date-display" class="mt-1 sm:mt-2 text-center text-xs sm:text-sm text-gray-600 font-medium"></div>
       </div>
 
       <!-- Progress Overview -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
         <!-- Overall Progress -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-semibold">Overall Progress</h2>
-            <div class="relative w-16 h-16">
+        <div class="bg-white rounded-xl shadow-md p-4 sm:p-6">
+          <div class="flex items-center justify-between mb-3 sm:mb-4">
+            <h2 class="text-lg sm:text-xl font-semibold">Overall Progress</h2>
+            <div class="relative w-12 h-12 sm:w-16 sm:h-16">
               <svg class="w-full h-full" viewBox="0 0 36 36">
                 <path d="M18 2.0845
                   a 15.9155 15.9155 0 0 1 0 31.831
@@ -129,27 +139,27 @@
                   stroke="#4ECDC4"
                   stroke-width="3"
                   stroke-dasharray="100, 100"/>
-                <text x="18" y="20.5" text-anchor="middle" font-size="8" fill="#292F36" font-weight="bold">0%</text>
+                <text x="18" y="20.5" text-anchor="middle" font-size="6 sm:8" fill="#292F36" font-weight="bold">0%</text>
               </svg>
             </div>
           </div>
-          <p id="progress" class="text-lg">Completed: <span class="font-bold">0</span> of <span class="font-bold">0</span> tasks</p>
-          <div class="mt-4">
+          <p id="progress" class="text-sm sm:text-base md:text-lg">Completed: <span class="font-bold">0</span> of <span class="font-bold">0</span> tasks</p>
+          <div class="mt-3 sm:mt-4">
             <div class="flex justify-between mb-1">
-              <span class="text-sm font-medium">Weight Loss</span>
-              <span id="weight-progress" class="text-sm font-medium">0/30 days</span>
+              <span class="text-xs sm:text-sm font-medium">Weight Loss</span>
+              <span id="weight-progress" class="text-xs sm:text-sm font-medium">0/30 days</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-2.5">
-              <div id="weight-bar" class="bg-primary h-2.5 rounded-full" style="width: 0%"></div>
+            <div class="w-full bg-gray-200 rounded-full h-2 sm:h-2.5">
+              <div id="weight-bar" class="bg-primary h-2 sm:h-2.5 rounded-full" style="width: 0%"></div>
             </div>
           </div>
         </div>
 
         <!-- Daily Progress -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <h2 class="text-xl font-semibold mb-4">Day <span id="current-day">1</span> Progress</h2>
-          <div class="flex items-center justify-center mb-4">
-            <div class="relative w-32 h-32">
+        <div class="bg-white rounded-xl shadow-md p-4 sm:p-6">
+          <h2 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Day <span id="current-day">1</span> Progress</h2>
+          <div class="flex items-center justify-center mb-3 sm:mb-4">
+            <div class="relative w-24 h-24 sm:w-32 sm:h-32">
               <svg class="w-full h-full" viewBox="0 0 36 36">
                 <path d="M18 2.0845
                   a 15.9155 15.9155 0 0 1 0 31.831
@@ -164,28 +174,28 @@
                   stroke="#FF6B6B"
                   stroke-width="3"
                   stroke-dasharray="0, 100"/>
-                <text x="18" y="20.5" text-anchor="middle" font-size="10" fill="#292F36" font-weight="bold">0%</text>
+                <text x="18" y="20.5" text-anchor="middle" font-size="8 sm:10" fill="#292F36" font-weight="bold">0%</text>
               </svg>
             </div>
           </div>
-          <p id="progress-text" class="text-center text-lg">You're just getting started!</p>
+          <p id="progress-text" class="text-center text-sm sm:text-base md:text-lg">You're just getting started!</p>
         </div>
       </div>
 
       <!-- Tasks -->
       <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <div class="gradient-bg px-6 py-4">
-          <h2 class="text-2xl font-bold text-white">Day <span id="current-day-text">1</span> Tasks - <span id="current-date-task"></span></h2>
+        <div class="gradient-bg px-4 py-3 sm:px-6 sm:py-4">
+          <h2 class="text-xl sm:text-2xl font-bold text-white">Day <span id="current-day-text">1</span> Tasks - <span id="current-date-task"></span></h2>
         </div>
-        <div class="p-6">
-          <ul id="tasks" class="space-y-4">
+        <div class="p-4 sm:p-6">
+          <ul id="tasks" class="space-y-3 sm:space-y-4">
             <!-- Tasks will be loaded by JavaScript -->
           </ul>
         </div>
       </div>
 
       <!-- Motivational Quote -->
-      <div id="motivation" class="mt-8 text-center italic text-lg text-gray-600">
+      <div id="motivation" class="mt-6 sm:mt-8 text-center italic text-sm sm:text-base md:text-lg text-gray-600">
         "The secret of getting ahead is getting started." - Mark Twain
       </div>
     </div>
@@ -444,23 +454,23 @@
       } else {
         tasks.forEach((task, index) => {
           const li = document.createElement('li');
-          li.className = `task-card bg-white rounded-lg shadow p-4 border-l-4 ${getCategoryBorder(task.category)} ${task.completed ? 'opacity-80' : ''}`;
+          li.className = `task-card bg-white rounded-lg shadow p-3 sm:p-4 border-l-4 ${getCategoryBorder(task.category)} ${task.completed ? 'opacity-80' : ''}`;
           li.innerHTML = `
             <div class="flex items-start">
               <div class="flex-shrink-0 pt-1">
                 <input type="checkbox" id="task-${day}-${index}" ${task.completed ? 'checked' : ''} 
-                      class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary" 
+                      class="h-4 w-4 sm:h-5 sm:w-5 rounded border-gray-300 text-primary focus:ring-primary" 
                       onchange="toggleTask(${day}, ${index}, this)">
               </div>
               <div class="ml-3 flex-1">
-                <label for="task-${day}-${index}" class="block text-lg ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}">
+                <label for="task-${day}-${index}" class="block text-sm sm:text-base ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}">
                   <span class="font-semibold">${task.emoji} ${task.category}</span>: ${task.task}
                 </label>
-                <div class="mt-2 flex items-center">
+                <div class="mt-2 flex items-center task-link-input">
                   <input type="text" id="link-${day}-${index}" placeholder="Paste your progress link here..." 
-                        value="${task.link || ''}" class="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        value="${task.link || ''}" class="flex-1 p-1 sm:p-2 text-xs sm:text-sm border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                         onblur="updateLink(${day}, ${index}, this.value)">
-                  ${task.link ? `<a href="${task.link}" target="_blank" class="ml-2 px-3 py-2 bg-secondary text-white rounded-lg hover:bg-opacity-90 transition">View</a>` : ''}
+                  ${task.link ? `<a href="${task.link}" target="_blank" class="ml-2 px-2 py-1 sm:px-3 sm:py-2 bg-secondary text-white rounded-lg hover:bg-opacity-90 transition text-xs sm:text-sm">View</a>` : ''}
                 </div>
               </div>
             </div>
@@ -564,7 +574,7 @@
       } else if (percentage < 100) {
         progressText.textContent = "More than halfway there!";
       } else {
-        progressText.textContent = "Perfect! You completed all tasks for today!";
+        progressText.textContent = "Perfect! You completed all
       }
     }
 
