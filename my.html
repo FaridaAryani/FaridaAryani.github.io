@@ -3,63 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tracker 30 Hari</title>
+  <title>My Glow-Up Journey | 30-Day Tracker</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF6B6B',
+            secondary: '#4ECDC4',
+            accent: '#FFE66D',
+            dark: '#292F36',
+            light: '#F7FFF7',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-bg {
+      background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+    }
+    .task-card {
+      transition: all 0.3s ease;
+    }
+    .task-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .progress-ring__circle {
+      transition: stroke-dashoffset 0.5s ease;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-  <div class="container mx-auto p-4 max-w-2xl">
-    <h1 class="text-3xl font-bold text-center mb-6">Tracker 30 Hari</h1>
-    <div class="mb-4">
-      <label for="day" class="block text-lg font-medium mb-2">Pilih Hari:</label>
-      <select id="day" class="w-full p-2 border rounded" onchange="updateTasks()">
-        <option value="1">Hari 1</option>
-        <option value="2">Hari 2</option>
-        <option value="3">Hari 3</option>
-        <option value="4">Hari 4</option>
-        <option value="5">Hari 5</option>
-        <option value="6">Hari 6</option>
-        <option value="7">Hari 7 (Istirahat)</option>
-        <option value="8">Hari 8</option>
-        <option value="9">Hari 9</option>
-        <option value="10">Hari 10</option>
-        <option value="11">Hari 11</option>
-        <option value="12">Hari 12</option>
-        <option value="13">Hari 13</option>
-        <option value="14">Hari 14 (Istirahat)</option>
-        <option value="15">Hari 15</option>
-        <option value="16">Hari 16</option>
-        <option value="17">Hari 17</option>
-        <option value="18">Hari 18</option>
-        <option value="19">Hari 19</option>
-        <option value="20">Hari 20</option>
-        <option value="21">Hari 21 (Istirahat)</option>
-        <option value="22">Hari 22</option>
-        <option value="23">Hari 23</option>
-        <option value="24">Hari 24</option>
-        <option value="25">Hari 25</option>
-        <option value="26">Hari 26</option>
-        <option value="27">Hari 27</option>
-        <option value="28">Hari 28 (Istirahat)</option>
-        <option value="29">Hari 29</option>
-        <option value="30">Hari 30</option>
-      </select>
-    </div>
-    <div class="mb-4 bg-white p-4 rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">Progres Keseluruhan</h2>
-      <p id="progress">Tugas selesai: 0 dari 0</p>
-    </div>
-    <div class="mb-4 bg-white p-4 rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">Progres Hari <span id="current-day">1</span></h2>
-      <div class="w-full bg-gray-200 rounded-full h-4">
-        <div id="progress-bar" class="bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
+<body class="bg-light font-sans text-dark">
+  <div class="min-h-screen pb-10">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 shadow-lg">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-2">My Glow-Up Journey</h1>
+        <p class="text-xl opacity-90">30 Days to a Better Me</p>
       </div>
-      <p id="progress-text" class="text-sm text-gray-600 mt-2">0% selesai</p>
-    </div>
-    <div id="task-list" class="bg-white p-4 rounded shadow">
-      <h2 class="text-xl font-semibold mb-4">Tugas Hari <span id="current-day-text">1</span></h2>
-      <ul id="tasks" class="space-y-2">
-        <!-- Tugas akan dimuat oleh JavaScript -->
-      </ul>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      <!-- Day Selector -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Select Your Day</h2>
+        <div class="relative">
+          <select id="day" class="w-full p-4 pr-10 rounded-lg border-2 border-secondary focus:border-primary focus:ring-2 focus:ring-primary appearance-none text-lg font-medium" onchange="updateTasks()">
+            <option value="1">Day 1 - Let's Begin!</option>
+            <option value="2">Day 2 - Building Momentum</option>
+            <option value="3">Day 3 - Finding Rhythm</option>
+            <option value="4">Day 4 - Consistency is Key</option>
+            <option value="5">Day 5 - Pushing Forward</option>
+            <option value="6">Day 6 - Almost There</option>
+            <option value="7">Day 7 - Rest & Reflect</option>
+            <option value="8">Day 8 - Level Up!</option>
+            <option value="9">Day 9 - Stronger Every Day</option>
+            <option value="10">Day 10 - Double Digits!</option>
+            <option value="11">Day 11 - Making Progress</option>
+            <option value="12">Day 12 - Halfway Mark</option>
+            <option value="13">Day 13 - Keep Going</option>
+            <option value="14">Day 14 - Rest Day</option>
+            <option value="15">Day 15 - New Challenges</option>
+            <option value="16">Day 16 - Building Habits</option>
+            <option value="17">Day 17 - Seeing Results</option>
+            <option value="18">Day 18 - Staying Motivated</option>
+            <option value="19">Day 19 - Almost There</option>
+            <option value="20">Day 20 - Two-Thirds Done!</option>
+            <option value="21">Day 21 - Rest & Recharge</option>
+            <option value="22">Day 22 - Final Push</option>
+            <option value="23">Day 23 - Breaking Limits</option>
+            <option value="24">Day 24 - So Close!</option>
+            <option value="25">Day 25 - Almost There</option>
+            <option value="26">Day 26 - Final Stretch</option>
+            <option value="27">Day 27 - Last Efforts</option>
+            <option value="28">Day 28 - Rest Day</option>
+            <option value="29">Day 29 - Preparing for Success</option>
+            <option value="30">Day 30 - Final Day!</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Overall Progress -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Overall Progress</h2>
+            <div class="relative w-16 h-16">
+              <svg class="w-full h-full" viewBox="0 0 36 36">
+                <path d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#E0E0E0"
+                  stroke-width="3"/>
+                <path id="overall-progress-ring" d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#4ECDC4"
+                  stroke-width="3"
+                  stroke-dasharray="100, 100"/>
+                <text x="18" y="20.5" text-anchor="middle" font-size="8" fill="#292F36" font-weight="bold">0%</text>
+              </svg>
+            </div>
+          </div>
+          <p id="progress" class="text-lg">Completed: <span class="font-bold">0</span> of <span class="font-bold">0</span> tasks</p>
+          <div class="mt-4">
+            <div class="flex justify-between mb-1">
+              <span class="text-sm font-medium">Weight Loss</span>
+              <span id="weight-progress" class="text-sm font-medium">0/30 days</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div id="weight-bar" class="bg-primary h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily Progress -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-xl font-semibold mb-4">Day <span id="current-day">1</span> Progress</h2>
+          <div class="flex items-center justify-center mb-4">
+            <div class="relative w-32 h-32">
+              <svg class="w-full h-full" viewBox="0 0 36 36">
+                <path d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#E0E0E0"
+                  stroke-width="3"/>
+                <path id="daily-progress-ring" d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="#FF6B6B"
+                  stroke-width="3"
+                  stroke-dasharray="0, 100"/>
+                <text x="18" y="20.5" text-anchor="middle" font-size="10" fill="#292F36" font-weight="bold">0%</text>
+              </svg>
+            </div>
+          </div>
+          <p id="progress-text" class="text-center text-lg">You're just getting started!</p>
+        </div>
+      </div>
+
+      <!-- Tasks -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="gradient-bg px-6 py-4">
+          <h2 class="text-2xl font-bold text-white">Day <span id="current-day-text">1</span> Tasks</h2>
+        </div>
+        <div class="p-6">
+          <ul id="tasks" class="space-y-4">
+            <!-- Tasks will be loaded by JavaScript -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Motivational Quote -->
+      <div id="motivation" class="mt-8 text-center italic text-lg text-gray-600">
+        "The secret of getting ahead is getting started." - Mark Twain
+      </div>
     </div>
   </div>
 
@@ -67,189 +182,239 @@
     // Initialize tasksByDay, loading from localStorage if available
     let tasksByDay = JSON.parse(localStorage.getItem('tasksByDay')) || {
       1: [
-        { category: "Workout", task: "HIIT 45 menit (500 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari Pinyin, nada, 20 kata HSK 1", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Rencanakan situs, buat mockup dasar di Figma", completed: false, link: "" },
-        { category: "Arduino", task: "Instal IDE, jalankan sketsa LED berkedip", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih Pinyin, hafal 10 kata HSK 1", completed: false, link: "" },
-        { category: "Arduino", task: "Buat sketsa LED dikontrol tombol", completed: false, link: "" },
-        { category: "Content", task: "Edit foto progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Morning yoga (30 min) + 10K steps", emoji: "🧘‍♀️", completed: false, link: "" },
+        { category: "Study", task: "Complete 1 LeetCode problem", emoji: "💻", completed: false, link: "" },
+        { category: "Language", task: "Duolingo Mandarin (15 min)", emoji: "📚", completed: false, link: "" },
+        { category: "Content", task: "Post workout selfie + progress", emoji: "📸", completed: false, link: "" },
+        { category: "Nutrition", task: "Meal prep healthy lunches", emoji: "🥗", completed: false, link: "" },
+        { category: "Skill", task: "Watch 1 tech tutorial video", emoji: "🎥", completed: false, link: "" }
       ],
       2: [
-        { category: "Workout", task: "Kardio 45 menit (500 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, struktur kalimat", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Sempurnakan mockup Figma", completed: false, link: "" },
-        { category: "Arduino", task: "Buat rangkaian beberapa LED", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih kalimat, pelajari angka 1–100", completed: false, link: "" },
-        { category: "Content", task: "Edit video progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "HIIT workout (30 min) + 10K steps", emoji: "🔥", completed: false, link: "" },
+        { category: "Study", task: "Work on personal project (1 hour)", emoji: "💻", completed: false, link: "" },
+        { category: "Language", task: "Practice 10 new Mandarin words", emoji: "📚", completed: false, link: "" },
+        { category: "Content", task: "Share healthy meal on stories", emoji: "📸", completed: false, link: "" },
+        { category: "Self-Care", task: "Skincare routine + face mask", emoji: "💆‍♀️", completed: false, link: "" },
+        { category: "Skill", task: "Learn 1 new CSS trick", emoji: "🎨", completed: false, link: "" }
       ],
       3: [
-        { category: "Workout", task: "HIIT + latihan inti (500 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, frasa harian", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Buat struktur HTML (header, nav, footer)", completed: false, link: "" },
-        { category: "Arduino", task: "Jalankan sketsa sensor suhu", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih dialog, ulas kosakata", completed: false, link: "" },
-        { category: "Content", task: "Unggah foto/video ke media sosial", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Dance workout (45 min) + 10K steps", emoji: "💃", completed: false, link: "" },
+        { category: "Study", task: "Study algorithms (1 hour)", emoji: "📊", completed: false, link: "" },
+        { category: "Language", task: "Watch Mandarin show with subtitles", emoji: "📺", completed: false, link: "" },
+        { category: "Content", task: "Post study setup photo", emoji: "📸", completed: false, link: "" },
+        { category: "Nutrition", task: "No sugary drinks today", emoji: "🚫", completed: false, link: "" },
+        { category: "Skill", task: "Practice Git commands", emoji: "🔄", completed: false, link: "" }
       ],
       4: [
-        { category: "Workout", task: "Kardio + kekuatan (500 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, tata bahasa dasar", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Tambahkan gaya CSS (flexbox/grid)", completed: false, link: "" },
-        { category: "Arduino", task: "Buat sketsa kontrol servo", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih berbicara, ulas tata bahasa", completed: false, link: "" },
-        { category: "Content", task: "Edit foto progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Strength training (45 min) + 10K steps", emoji: "🏋️‍♀️", completed: false, link: "" },
+        { category: "Study", task: "Complete coding challenge", emoji: "⌨️", completed: false, link: "" },
+        { category: "Language", task: "Practice Mandarin with friend", emoji: "🗣️", completed: false, link: "" },
+        { category: "Content", task: "Share workout progress video", emoji: "🎥", completed: false, link: "" },
+        { category: "Self-Care", task: "Journal 3 things you're grateful for", emoji: "📔", completed: false, link: "" },
+        { category: "Skill", task: "Read tech article", emoji: "📰", completed: false, link: "" }
       ],
       5: [
-        { category: "Workout", task: "HIIT + peregangan (500 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 1, ekspresi waktu", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Tambahkan interaktivitas JS (event tombol)", completed: false, link: "" },
-        { category: "Arduino", task: "Tampilkan data sensor di LCD", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih kalimat waktu, ulas kosakata", completed: false, link: "" },
-        { category: "Content", task: "Edit video progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Pilates (30 min) + 12K steps", emoji: "🧘‍♀️", completed: false, link: "" },
+        { category: "Study", task: "Work on portfolio website", emoji: "🖥️", completed: false, link: "" },
+        { category: "Language", task: "Learn 5 tech terms in Mandarin", emoji: "📚", completed: false, link: "" },
+        { category: "Content", task: "Post healthy breakfast recipe", emoji: "🍳", completed: false, link: "" },
+        { category: "Nutrition", task: "Drink 2L water today", emoji: "💧", completed: false, link: "" },
+        { category: "Skill", task: "Try new JavaScript feature", emoji: "⚡", completed: false, link: "" }
       ],
       6: [
-        { category: "Workout", task: "Kardio + inti (500 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Ulas 100 kata HSK 1, latih dialog", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Selesaikan mockup, sempurnakan HTML/CSS", completed: false, link: "" },
-        { category: "Arduino", task: "Pelajari komunikasi serial, debug sketsa", completed: false, link: "" },
-        { category: "Mandarin", task: "Mulai 20 kata HSK 2, latih membaca", completed: false, link: "" },
-        { category: "Content", task: "Cari freelancer untuk edit video (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Outdoor run (30 min) + 15K steps", emoji: "🏃‍♀️", completed: false, link: "" },
+        { category: "Study", task: "Review week's learning", emoji: "📝", completed: false, link: "" },
+        { category: "Language", task: "Write short paragraph in Mandarin", emoji: "✍️", completed: false, link: "" },
+        { category: "Content", task: "Post weekend study vlog", emoji: "🎥", completed: false, link: "" },
+        { category: "Self-Care", task: "Digital detox for 2 hours", emoji: "📵", completed: false, link: "" },
+        { category: "Skill", task: "Contribute to open source", emoji: "👩‍💻", completed: false, link: "" }
       ],
       7: [
-        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false, link: "" },
-        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Content", task: "Unggah foto/video ke media sosial", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Gentle walk (30 min)", emoji: "🚶‍♀️", completed: false, link: "" },
+        { category: "Reflection", task: "Journal about week's progress", emoji: "📔", completed: false, link: "" },
+        { category: "Content", task: "Post weekly recap", emoji: "📸", completed: false, link: "" },
+        { category: "Self-Care", task: "Full skincare routine", emoji: "💆‍♀️", completed: false, link: "" },
+        { category: "Planning", task: "Prepare for next week", emoji: "📅", completed: false, link: "" }
       ],
       8: [
-        { category: "Workout", task: "HIIT + kekuatan (600 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 2, pola kalimat", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Tambahkan formulir, validasi JS", completed: false, link: "" },
-        { category: "Arduino", task: "Buat alat ukur jarak ultrasonik", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih kalimat HSK 2, ulas kosakata", completed: false, link: "" },
-        { category: "Content", task: "Edit foto progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "HIIT + abs (45 min) + 12K steps", emoji: "🔥", completed: false, link: "" },
+        { category: "Study", task: "Learn new framework basics", emoji: "🧠", completed: false, link: "" },
+        { category: "Language", task: "Mandarin flashcards (20 min)", emoji: "📇", completed: false, link: "" },
+        { category: "Content", task: "Post workout transformation", emoji: "📸", completed: false, link: "" },
+        { category: "Nutrition", task: "Try new healthy recipe", emoji: "🍲", completed: false, link: "" },
+        { category: "Skill", task: "Build small UI component", emoji: "🖌️", completed: false, link: "" }
       ],
       14: [
-        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false, link: "" },
-        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Content", task: "Unggah foto/video ke media sosial", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Yoga + stretching (40 min)", emoji: "🧘‍♀️", completed: false, link: "" },
+        { category: "Reflection", task: "Mid-challenge progress review", emoji: "📊", completed: false, link: "" },
+        { category: "Content", task: "Share before/after photos", emoji: "📸", completed: false, link: "" },
+        { category: "Self-Care", task: "Pamper evening", emoji: "✨", completed: false, link: "" },
+        { category: "Planning", task: "Set goals for week 3", emoji: "🎯", completed: false, link: "" }
       ],
       15: [
-        { category: "Workout", task: "Kardio + kekuatan (600 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 3, kalimat kompleks", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Optimasi waktu muat, tambahkan animasi", completed: false, link: "" },
-        { category: "Arduino", task: "Pelajari modul Wi-Fi (ESP8266)", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih kalimat HSK 3, ulas kosakata", completed: false, link: "" },
-        { category: "Content", task: "Cari freelancer untuk edit foto (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Strength training (50 min) + 15K steps", emoji: "🏋️‍♀️", completed: false, link: "" },
+        { category: "Study", task: "Complete 2 LeetCode problems", emoji: "💻", completed: false, link: "" },
+        { category: "Language", task: "Watch Mandarin tech video", emoji: "📺", completed: false, link: "" },
+        { category: "Content", task: "Post coding setup", emoji: "🖥️", completed: false, link: "" },
+        { category: "Nutrition", task: "Meal prep high-protein meals", emoji: "🍗", completed: false, link: "" },
+        { category: "Skill", task: "Practice debugging techniques", emoji: "🐞", completed: false, link: "" }
       ],
       21: [
-        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false, link: "" },
-        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Content", task: "Unggah foto/video ke media sosial", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Active recovery day (walk/yoga)", emoji: "🚶‍♀️", completed: false, link: "" },
+        { category: "Reflection", task: "Journal about habits formed", emoji: "📔", completed: false, link: "" },
+        { category: "Content", task: "Share favorite healthy snacks", emoji: "🍏", completed: false, link: "" },
+        { category: "Self-Care", task: "Meditation session", emoji: "🧠", completed: false, link: "" },
+        { category: "Planning", task: "Final week preparation", emoji: "📅", completed: false, link: "" }
       ],
       22: [
-        { category: "Workout", task: "Kardio + kekuatan (700 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Pelajari 20 kata HSK 3, latih esai", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Luncurkan situs, kumpulkan umpan balik", completed: false, link: "" },
-        { category: "Arduino", task: "Mulai proyek otomatisasi rumah", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih mendengar (podcast), ulas kosakata", completed: false, link: "" },
-        { category: "Content", task: "Edit video progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Circuit training (50 min) + 15K steps", emoji: "⏱️", completed: false, link: "" },
+        { category: "Study", task: "Work on complex project", emoji: "💻", completed: false, link: "" },
+        { category: "Language", task: "Have conversation in Mandarin", emoji: "🗣️", completed: false, link: "" },
+        { category: "Content", task: "Post final stretch motivation", emoji: "💪", completed: false, link: "" },
+        { category: "Nutrition", task: "Track macros carefully", emoji: "📊", completed: false, link: "" },
+        { category: "Skill", task: "Learn optimization techniques", emoji: "⚡", completed: false, link: "" }
       ],
       28: [
-        { category: "Workout", task: "Jalan ringan (30 menit)", completed: false, link: "" },
-        { category: "Mandarin", task: "Ulas kosakata Mandarin (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Content", task: "Unggah foto/video ke media sosial", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Gentle yoga + reflection", emoji: "🧘‍♀️", completed: false, link: "" },
+        { category: "Reflection", task: "Write about journey so far", emoji: "📔", completed: false, link: "" },
+        { category: "Content", task: "Post progress collage", emoji: "📸", completed: false, link: "" },
+        { category: "Self-Care", task: "Relaxing bath", emoji: "🛁", completed: false, link: "" },
+        { category: "Planning", task: "Prepare for final push", emoji: "✊", completed: false, link: "" }
       ],
       29: [
-        { category: "Workout", task: "HIIT + inti (700 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Simulasi tes HSK 3, ulas kelemahan", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Perbarui akhir, pastikan kompatibilitas mobile", completed: false, link: "" },
-        { category: "Arduino", task: "Presentasikan proyek akhir", completed: false, link: "" },
-        { category: "Mandarin", task: "Latih kelancaran percakapan", completed: false, link: "" },
-        { category: "Content", task: "Edit foto progress (30 menit)", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Full body workout (60 min) + 15K steps", emoji: "💪", completed: false, link: "" },
+        { category: "Study", task: "Finalize portfolio projects", emoji: "🖥️", completed: false, link: "" },
+        { category: "Language", task: "Test Mandarin proficiency", emoji: "📝", completed: false, link: "" },
+        { category: "Content", task: "Share before/after stats", emoji: "📊", completed: false, link: "" },
+        { category: "Nutrition", task: "Perfect day of eating", emoji: "🍽️", completed: false, link: "" },
+        { category: "Skill", task: "Review all learned skills", emoji: "📚", completed: false, link: "" }
       ],
       30: [
-        { category: "Workout", task: "Kardio + kekuatan (700 kkal)", completed: false, link: "" },
-        { category: "Mandarin", task: "Ulas penuh HSK 3, latih semua keterampilan", completed: false, link: "" },
-        { category: "Skincare", task: "Pagi: Pembersih, toner, pelembap, tabir surya", completed: false, link: "" },
-        { category: "Website", task: "Ulas situs akhir, cadangkan kode", completed: false, link: "" },
-        { category: "Arduino", task: "Ulas proyek, rencanakan pembelajaran lanjutan", completed: false, link: "" },
-        { category: "Mandarin", task: "Percakapan dengan mitra bahasa", completed: false, link: "" },
-        { category: "Content", task: "Unggah video final ke media sosial", completed: false, link: "" },
-        { category: "Skincare", task: "Malam: Pembersihan ganda, toner, krim malam", completed: false, link: "" }
+        { category: "Fitness", task: "Celebration workout!", emoji: "🎉", completed: false, link: "" },
+        { category: "Study", task: "Plan next learning steps", emoji: "📅", completed: false, link: "" },
+        { category: "Language", task: "Set new Mandarin goals", emoji: "🎯", completed: false, link: "" },
+        { category: "Content", task: "Final results reveal", emoji: "📸", completed: false, link: "" },
+        { category: "Reflection", task: "Write about 30-day journey", emoji: "📔", completed: false, link: "" },
+        { category: "Celebration", task: "Treat yourself!", emoji: "🎁", completed: false, link: "" }
       ]
     };
 
+    // Motivational quotes for each day
+    const motivationalQuotes = [
+      "The secret of getting ahead is getting started.",
+      "Small steps every day lead to big results.",
+      "Consistency is the key to success.",
+      "You're stronger than you think.",
+      "Progress, not perfection.",
+      "Every expert was once a beginner.",
+      "Rest is part of the journey.",
+      "Level up! You're doing amazing.",
+      "Growth happens outside your comfort zone.",
+      "Double digits! Keep pushing forward.",
+      "Success is the sum of small efforts.",
+      "Halfway there! You've got this.",
+      "The harder you work, the luckier you get.",
+      "Rest, recharge, reflect.",
+      "New week, new challenges!",
+      "Good habits are as addictive as bad ones.",
+      "Results take time, keep going!",
+      "Motivation gets you started, habit keeps you going.",
+      "Almost there! Stay focused.",
+      "Two-thirds done! Final stretch ahead.",
+      "Rest days make your workout days better.",
+      "Final push! Give it your all.",
+      "Limits exist only in your mind.",
+      "So close! Keep that momentum.",
+      "Success is just around the corner.",
+      "Final stretch! Almost there.",
+      "Last efforts before victory.",
+      "Rest up for the final day!",
+      "Prepare for success tomorrow.",
+      "You did it! 30 days of growth."
+    ];
+
     function updateTasks() {
       const day = document.getElementById('day').value;
-      document.getElementById('current-day').textContent = day;
-      document.getElementById('current-day-text').textContent = day;
+      const dayNum = parseInt(day);
+      document.getElementById('current-day').textContent = dayNum;
+      document.getElementById('current-day-text').textContent = dayNum;
+      
+      // Update motivational quote
+      document.getElementById('motivation').textContent = `"${motivationalQuotes[dayNum-1]}"`;
+      
       const tasks = tasksByDay[day] || [];
       const taskList = document.getElementById('tasks');
       taskList.innerHTML = '';
 
-      tasks.forEach((task, index) => {
-        const li = document.createElement('li');
-        li.className = 'flex flex-col space-y-2 p-2 border-b';
-        li.innerHTML = `
-          <div class="flex items-center space-x-2">
-            <input type="checkbox" id="task-${day}-${index}" ${task.completed ? 'checked' : ''} 
-                   class="h-5 w-5" onchange="toggleTask(${day}, ${index}, this)">
-            <label for="task-${day}-${index}" class="${task.completed ? 'line-through text-gray-500' : ''}">
-              <span class="font-medium">[${task.category}]</span> ${task.task}
-            </label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <input type="text" id="link-${day}-${index}" placeholder="Masukkan link progress (wajib)" 
-                   value="${task.link || ''}" class="w-full p-2 border rounded"
-                   onblur="updateLink(${day}, ${index}, this.value)">
-            ${task.link ? `<a href="${task.link}" target="_blank" class="text-blue-500 hover:underline">Lihat</a>` : ''}
-          </div>
-        `;
-        taskList.appendChild(li);
-      });
+      if (tasks.length === 0) {
+        taskList.innerHTML = '<p class="text-center py-4">No tasks for this day. Enjoy your rest!</p>';
+      } else {
+        tasks.forEach((task, index) => {
+          const li = document.createElement('li');
+          li.className = `task-card bg-white rounded-lg shadow p-4 border-l-4 ${getCategoryBorder(task.category)} ${task.completed ? 'opacity-80' : ''}`;
+          li.innerHTML = `
+            <div class="flex items-start">
+              <div class="flex-shrink-0 pt-1">
+                <input type="checkbox" id="task-${day}-${index}" ${task.completed ? 'checked' : ''} 
+                      class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary" 
+                      onchange="toggleTask(${day}, ${index}, this)">
+              </div>
+              <div class="ml-3 flex-1">
+                <label for="task-${day}-${index}" class="block text-lg ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}">
+                  <span class="font-semibold">${task.emoji} ${task.category}</span>: ${task.task}
+                </label>
+                <div class="mt-2 flex items-center">
+                  <input type="text" id="link-${day}-${index}" placeholder="Paste your progress link here..." 
+                        value="${task.link || ''}" class="flex-1 p-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        onblur="updateLink(${day}, ${index}, this.value)">
+                  ${task.link ? `<a href="${task.link}" target="_blank" class="ml-2 px-3 py-2 bg-secondary text-white rounded-lg hover:bg-opacity-90 transition">View</a>` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+          taskList.appendChild(li);
+        });
+      }
 
       updateProgress();
       updateDailyProgressBar(day);
     }
 
+    function getCategoryBorder(category) {
+      switch(category) {
+        case 'Fitness': return 'border-primary';
+        case 'Study': return 'border-blue-500';
+        case 'Language': return 'border-green-500';
+        case 'Content': return 'border-pink-500';
+        case 'Nutrition': return 'border-yellow-500';
+        case 'Self-Care': return 'border-purple-500';
+        case 'Skill': return 'border-indigo-500';
+        case 'Reflection': return 'border-gray-500';
+        case 'Planning': return 'border-teal-500';
+        case 'Celebration': return 'border-red-500';
+        default: return 'border-gray-300';
+      }
+    }
+
     function toggleTask(day, index, checkbox) {
       const task = tasksByDay[day][index];
       if (checkbox.checked && !task.link) {
-        alert('Harap masukkan link progress sebelum menandai tugas sebagai selesai!');
+        alert('Please add a progress link before marking as complete!');
         checkbox.checked = false;
         return;
       }
       tasksByDay[day][index].completed = checkbox.checked;
       localStorage.setItem('tasksByDay', JSON.stringify(tasksByDay));
       updateTasks();
+      
+      // Add celebration effect for completed tasks
+      if (checkbox.checked) {
+        const taskElement = checkbox.closest('.task-card');
+        taskElement.classList.add('animate-pulse');
+        setTimeout(() => {
+          taskElement.classList.remove('animate-pulse');
+        }, 1000);
+      }
     }
 
     function updateLink(day, index, link) {
@@ -261,11 +426,29 @@
     function updateProgress() {
       let totalTasks = 0;
       let completedTasks = 0;
+      let completedDays = 0;
+      
+      // Calculate task completion
       Object.values(tasksByDay).forEach(tasks => {
         totalTasks += tasks.length;
-        completedTasks += tasks.filter(task => task.completed && task.link).length;
+        const dayCompleted = tasks.filter(task => task.completed && task.link).length;
+        completedTasks += dayCompleted;
+        if (dayCompleted === tasks.length && tasks.length > 0) {
+          completedDays++;
+        }
       });
-      document.getElementById('progress').textContent = `Tugas selesai: ${completedTasks} dari ${totalTasks}`;
+      
+      // Update overall progress
+      const overallPercentage = totalTasks > 0 ? (completedTasks / totalTasks * 100).toFixed(0) : 0;
+      document.getElementById('progress').innerHTML = `Completed: <span class="font-bold">${completedTasks}</span> of <span class="font-bold">${totalTasks}</span> tasks`;
+      document.getElementById('weight-progress').textContent = `${completedDays}/30 days`;
+      document.getElementById('weight-bar').style.width = `${(completedDays / 30 * 100).toFixed(0)}%`;
+      
+      // Update progress ring
+      const overallRing = document.getElementById('overall-progress-ring');
+      const offset = 100 - overallPercentage;
+      overallRing.setAttribute('stroke-dasharray', `${overallPercentage}, 100`);
+      overallRing.parentElement.querySelector('text').textContent = `${overallPercentage}%`;
     }
 
     function updateDailyProgressBar(day) {
@@ -273,8 +456,23 @@
       const totalTasks = tasks.length;
       const completedTasks = tasks.filter(task => task.completed && task.link).length;
       const percentage = totalTasks > 0 ? (completedTasks / totalTasks * 100).toFixed(0) : 0;
-      document.getElementById('progress-bar').style.width = `${percentage}%`;
-      document.getElementById('progress-text').textContent = `${percentage}% selesai`;
+      
+      // Update daily progress ring
+      const dailyRing = document.getElementById('daily-progress-ring');
+      dailyRing.setAttribute('stroke-dasharray', `${percentage}, 100`);
+      dailyRing.parentElement.querySelector('text').textContent = `${percentage}%`;
+      
+      // Update progress text
+      const progressText = document.getElementById('progress-text');
+      if (percentage == 0) {
+        progressText.textContent = "You're just getting started!";
+      } else if (percentage < 50) {
+        progressText.textContent = "Keep going! You're making progress.";
+      } else if (percentage < 100) {
+        progressText.textContent = "More than halfway there!";
+      } else {
+        progressText.textContent = "Perfect! You completed all tasks for today!";
+      }
     }
 
     // Initialize tasks for first day
