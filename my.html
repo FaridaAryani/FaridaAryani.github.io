@@ -53,6 +53,18 @@
     </header>
 
     <div class="container mx-auto px-4 py-8 max-w-4xl">
+      <!-- Start Date Selector -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Set Your Start Date</h2>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+          <input type="date" id="start-date" class="p-3 rounded-lg border-2 border-secondary focus:border-primary focus:ring-2 focus:ring-primary text-lg font-medium">
+          <button onclick="setStartDate()" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition font-medium">Set Date</button>
+        </div>
+        <div id="date-range-display" class="mt-4 text-center text-lg font-medium hidden">
+          Your journey: <span id="start-date-display"></span> to <span id="end-date-display"></span>
+        </div>
+      </div>
+
       <!-- Day Selector -->
       <div class="bg-white rounded-xl shadow-md p-6 mb-8">
         <h2 class="text-2xl font-semibold mb-4 text-center">Select Your Day</h2>
@@ -93,6 +105,7 @@
             <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
           </div>
         </div>
+        <div id="current-date-display" class="mt-2 text-center text-gray-600 font-medium"></div>
       </div>
 
       <!-- Progress Overview -->
@@ -162,7 +175,7 @@
       <!-- Tasks -->
       <div class="bg-white rounded-xl shadow-md overflow-hidden">
         <div class="gradient-bg px-6 py-4">
-          <h2 class="text-2xl font-bold text-white">Day <span id="current-day-text">1</span> Tasks</h2>
+          <h2 class="text-2xl font-bold text-white">Day <span id="current-day-text">1</span> Tasks - <span id="current-date-task"></span></h2>
         </div>
         <div class="p-6">
           <ul id="tasks" class="space-y-4">
@@ -333,11 +346,91 @@
       "You did it! 30 days of growth."
     ];
 
+    // Date functionality
+    let startDate = null;
+    let dateRangeSet = false;
+
+    // Load start date from localStorage if available
+    if (localStorage.getItem('startDate')) {
+      startDate = new Date(localStorage.getItem('startDate'));
+      updateDateDisplay();
+      dateRangeSet = true;
+    }
+
+    function setStartDate() {
+      const dateInput = document.getElementById('start-date');
+      if (!dateInput.value) {
+        alert('Please select a start date!');
+        return;
+      }
+      
+      startDate = new Date(dateInput.value);
+      localStorage.setItem('startDate', startDate.toISOString());
+      updateDateDisplay();
+      dateRangeSet = true;
+      
+      // Show success message
+      const dateDisplay = document.getElementById('date-range-display');
+      dateDisplay.classList.remove('hidden');
+      dateDisplay.classList.add('animate-pulse');
+      setTimeout(() => {
+        dateDisplay.classList.remove('animate-pulse');
+      }, 1000);
+    }
+
+    function updateDateDisplay() {
+      if (!startDate) return;
+      
+      // Format start date
+      const startDateStr = formatDate(startDate);
+      document.getElementById('start-date-display').textContent = startDateStr;
+      
+      // Calculate and format end date (29 days after start)
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 29);
+      const endDateStr = formatDate(endDate);
+      document.getElementById('end-date-display').textContent = endDateStr;
+      
+      // Update current day's date
+      updateCurrentDateDisplay();
+    }
+
+    function formatDate(date) {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('id-ID', options);
+    }
+
+    function getDateForDay(day) {
+      if (!startDate) return null;
+      
+      const date = new Date(startDate);
+      date.setDate(date.getDate() + (day - 1));
+      return date;
+    }
+
+    function updateCurrentDateDisplay() {
+      if (!dateRangeSet) return;
+      
+      const day = parseInt(document.getElementById('day').value);
+      const date = getDateForDay(day);
+      
+      if (date) {
+        const dateStr = formatDate(date);
+        document.getElementById('current-date-display').textContent = dateStr;
+        document.getElementById('current-date-task').textContent = dateStr;
+      }
+    }
+
     function updateTasks() {
       const day = document.getElementById('day').value;
       const dayNum = parseInt(day);
       document.getElementById('current-day').textContent = dayNum;
       document.getElementById('current-day-text').textContent = dayNum;
+      
+      // Update date display if set
+      if (dateRangeSet) {
+        updateCurrentDateDisplay();
+      }
       
       // Update motivational quote
       document.getElementById('motivation').textContent = `"${motivationalQuotes[dayNum-1]}"`;
@@ -475,8 +568,15 @@
       }
     }
 
-    // Initialize tasks for first day
-    updateTasks();
+    // Set today's date as default in date picker
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date();
+      const dateStr = today.toISOString().split('T')[0];
+      document.getElementById('start-date').value = dateStr;
+      
+      // Initialize tasks for first day
+      updateTasks();
+    });
   </script>
 </body>
 </html>
