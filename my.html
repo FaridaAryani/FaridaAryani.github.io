@@ -622,23 +622,21 @@
 
     function toggleTask(day, index, checkbox) {
       const task = tasksByDay[day][index];
-      if (checkbox.checked && !task.link) {
-        alert('Please add a progress link before marking as complete!');
-        checkbox.checked = false;
-        return;
+      if (checkbox.checked) {
+        if (!task.link) {
+          alert('Please add a progress link before marking as complete!');
+          checkbox.checked = false;
+          return;
+        }
+        if (!isValidUrl(task.link)) {
+          alert('Please enter a valid URL (e.g., https://example.com)');
+          checkbox.checked = false;
+          return;
+        }
       }
       tasksByDay[day][index].completed = checkbox.checked;
       localStorage.setItem('tasksByDay', JSON.stringify(tasksByDay));
       updateTasks();
-      
-      // Add celebration effect for completed tasks
-      if (checkbox.checked) {
-        const taskElement = checkbox.closest('.task-card');
-        taskElement.classList.add('animate-pulse');
-        setTimeout(() => {
-          taskElement.classList.remove('animate-pulse');
-        }, 1000);
-      }
     }
 
     function updateLink(day, index, link) {
@@ -706,23 +704,6 @@
       } catch (_) {
         return false;
       }
-    }
-
-    function toggleTask(day, index, checkbox) {
-      const task = tasksByDay[day][index];
-      if (checkbox.checked) {
-        if (!task.link) {
-          alert('Please add a progress link before marking as complete!');
-          checkbox.checked = false;
-          return;
-        }
-        if (!isValidUrl(task.link)) {
-          alert('Please enter a valid URL!');
-          checkbox.checked = false;
-          return;
-        }
-      }
-      // ... rest of the function
     }
 
     // Set today's date as default in date picker
