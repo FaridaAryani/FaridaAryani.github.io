@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Glow-Up Journey | 30-Day Tracker</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Remove the CDN and use proper Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -24,6 +25,7 @@
       }
     }
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     .gradient-bg {
       background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
@@ -52,6 +54,7 @@
     }
   </style>
 </head>
+
 <body class="bg-light font-sans text-dark">
   <div class="min-h-screen pb-10">
     <!-- Header -->
